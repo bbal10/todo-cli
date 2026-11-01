@@ -55,6 +55,7 @@ def add(data_file: Path, title: str) -> None:
 
 
 def next_id(tasks):
+    """Kembalikan id berikutnya: id terbesar + 1, atau 1 kalau list kosong."""
     return max((task["id"] for task in tasks), default=0) + 1
 
 
