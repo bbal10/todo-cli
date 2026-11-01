@@ -54,7 +54,7 @@ def add(data_file: Path, title: str) -> None:
     click.echo(f"Ditambahkan #{new_id}: {title}")
 
 
-def next_id(tasks):
+def next_id(tasks: list[dict]) -> int:
     """Kembalikan id berikutnya: id terbesar + 1, atau 1 kalau list kosong."""
     return max((task["id"] for task in tasks), default=0) + 1
 
