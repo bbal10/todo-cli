@@ -1,7 +1,14 @@
+from dataclasses import dataclass
 import json
 from pathlib import Path
 
 import click
+
+@dataclass
+class Task:
+    id: int
+    title: str
+    done: bool = False
 
 
 def load_tasks(path: Path) -> list[dict]:
