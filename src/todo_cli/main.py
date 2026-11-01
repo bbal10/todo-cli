@@ -55,7 +55,7 @@ def add(data_file: Path, title: str) -> None:
 
 
 def next_id(tasks):
-    return max((t["id"] for t in tasks), default=0) + 1
+    return max((task["id"] for task in tasks), default=0) + 1
 
 
 @cli.command("list")
