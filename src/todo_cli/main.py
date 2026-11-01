@@ -75,9 +75,10 @@ def list_tasks(data_file: Path) -> None:
     if not tasks:
         click.echo("Belum ada task.")
         return
-    for task in tasks:
-        mark = "x" if task["done"] else " "
-        click.echo(f"[{mark}] {task['id']}. {task['title']}")
+    for raw in tasks:
+        task = Task(**raw)
+        status = "✓" if task.done else " "
+        click.echo(f"[{status}] #{task.id} {task.title}")
 
 
 @cli.command()
