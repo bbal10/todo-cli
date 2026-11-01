@@ -48,10 +48,14 @@ def add(data_file: Path, title: str) -> None:
     if not title:
         raise click.UsageError("Judul task tidak boleh kosong.")
     tasks = load_tasks(data_file)
-    new_id = max((t["id"] for t in tasks), default=0) + 1
+    new_id = next_id(tasks)
     tasks.append({"id": new_id, "title": title, "done": False})
     save_tasks(data_file, tasks)
     click.echo(f"Ditambahkan #{new_id}: {title}")
+
+
+def next_id(tasks):
+    return max((t["id"] for t in tasks), default=0) + 1
 
 
 @cli.command("list")
