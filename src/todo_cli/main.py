@@ -11,6 +11,7 @@ class Task:
     done: bool = False
 
 
+
 def load_tasks(path: Path) -> list[dict]:
     """Baca daftar task. Buat file kosong otomatis kalau belum ada."""
     if not path.exists():
