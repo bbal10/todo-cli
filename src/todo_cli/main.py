@@ -66,9 +66,9 @@ def list_tasks(data_file: Path) -> None:
     if not tasks:
         click.echo("Belum ada task.")
         return
-    for t in tasks:
-        mark = "x" if t["done"] else " "
-        click.echo(f"[{mark}] {t['id']}. {t['title']}")
+    for task in tasks:
+        mark = "x" if task["done"] else " "
+        click.echo(f"[{mark}] {task['id']}. {task['title']}")
 
 
 @cli.command()
@@ -77,13 +77,13 @@ def list_tasks(data_file: Path) -> None:
 def done(data_file: Path, task_id: int) -> None:
     """Tandai task dengan ID tertentu sebagai selesai."""
     tasks = load_tasks(data_file)
-    for t in tasks:
-        if t["id"] == task_id:
-            if t["done"]:
+    for task in tasks:
+        if task["id"] == task_id:
+            if task["done"]:
                 click.echo(f"Task #{task_id} sudah selesai sebelumnya.")
                 return
-            t["done"] = True
+            task["done"] = True
             save_tasks(data_file, tasks)
-            click.echo(f"Selesai #{task_id}: {t['title']}")
+            click.echo(f"Selesai #{task_id}: {task['title']}")
             return
     raise click.ClickException(f"Task #{task_id} tidak ditemukan.")
